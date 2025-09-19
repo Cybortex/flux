@@ -35,7 +35,7 @@ export const MobileNavigation: React.FC = () => {
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 bg-flux-bg-secondary/95 backdrop-blur-lg border-t border-flux-bg-tertiary z-50 md:hidden">
+      <div className="fixed bottom-0 left-0 right-0 bg-flux-bg-card/95 backdrop-blur-lg border-t border-flux-border-accent/30 z-50 md:hidden shadow-2xl">
         <div className="flex items-center justify-around py-2 px-4">
           {navItems.map((item) => (
             <motion.button
@@ -44,12 +44,12 @@ export const MobileNavigation: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => handleNavClick(item)}
               className={cn(
-                "flex flex-col items-center space-y-1 p-2 rounded-lg transition-colors",
+                "flex flex-col items-center space-y-1 p-2 rounded-lg transition-all duration-300 relative",
                 item.isCreate
-                  ? "bg-flux-gradient text-white"
+                  ? "bg-flux-gradient text-white glow-cyan shadow-lg"
                   : item.path && isActiveRoute(item.path)
-                  ? "text-flux-primary"
-                  : "text-flux-text-secondary hover:text-flux-text-primary"
+                  ? "text-flux-primary glow-cyan"
+                  : "text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary/50"
               )}
             >
               <item.icon className={cn(

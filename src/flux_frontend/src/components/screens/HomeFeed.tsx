@@ -89,9 +89,9 @@ export const HomeFeed: React.FC = () => {
   ] as const;
 
   return (
-    <div className="h-screen bg-flux-bg-primary overflow-hidden">
+    <div className="h-screen animated-bg overflow-hidden">
       {/* Header */}
-      <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/60 to-transparent">
+      <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-flux-bg-primary/80 via-flux-bg-primary/60 to-transparent backdrop-blur-sm border-b border-flux-border-accent/20">
         <div className="flex items-center justify-between p-4 pt-12">
           <div className="flex items-center space-x-4">
             {feedTabs.map((tab) => (
@@ -107,10 +107,10 @@ export const HomeFeed: React.FC = () => {
                     setActivePage('home');
                   }
                 }}
-                className={`text-white font-semibold transition-all duration-200 ${
+                className={`text-flux-text-primary font-semibold transition-all duration-300 px-4 py-2 rounded-lg relative overflow-hidden ${
                   feedType === tab.id
-                    ? 'text-white border-b-2 border-white pb-1'
-                    : 'text-white/70 hover:text-white'
+                    ? 'bg-flux-gradient text-white glow-cyan shadow-lg'
+                    : 'text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary/50 border border-transparent hover:border-flux-border-accent/30'
                 }`}
               >
                 {tab.label}
@@ -119,13 +119,13 @@ export const HomeFeed: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-3">
-            <Button size="sm" variant="ghost">
-              <Search className="w-5 h-5 text-white" />
+            <Button size="sm" variant="ghost" className="text-flux-text-primary hover:bg-flux-bg-tertiary/50 border border-flux-border-primary/30 hover:border-flux-border-accent/50">
+              <Search className="w-5 h-5" />
             </Button>
-            <Button size="sm" variant="ghost">
-              <Bell className="w-5 h-5 text-white" />
+            <Button size="sm" variant="ghost" className="text-flux-text-primary hover:bg-flux-bg-tertiary/50 border border-flux-border-primary/30 hover:border-flux-border-accent/50">
+              <Bell className="w-5 h-5" />
             </Button>
-            <button onClick={() => setActivePage('profile')}>
+            <button onClick={() => setActivePage('profile')} className="hover:opacity-80 transition-opacity">
               {currentUser ? (
                 <Avatar
                   src={currentUser.avatar}
@@ -133,7 +133,7 @@ export const HomeFeed: React.FC = () => {
                   size="sm"
                 />
               ) : (
-                <User className="w-5 h-5 text-white" />
+                <User className="w-5 h-5 text-flux-text-primary" />
               )}
             </button>
           </div>
@@ -143,16 +143,16 @@ export const HomeFeed: React.FC = () => {
       {/* Video Feed */}
       {isLoading ? (
         <div className="h-full flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-            <p className="text-white/70">Loading videos...</p>
+          <div className="text-center card-futuristic p-8">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-flux-primary mx-auto mb-4 glow-cyan"></div>
+            <p className="text-flux-text-secondary">Loading videos...</p>
           </div>
         </div>
       ) : videoFeed.length === 0 ? (
         <div className="h-full flex items-center justify-center">
-          <div className="text-center">
-            <p className="text-white/70 text-lg mb-2">No videos available</p>
-            <p className="text-white/50 text-sm">Upload some videos to get started!</p>
+          <div className="text-center card-futuristic p-8">
+            <p className="text-flux-text-primary text-lg mb-2">No videos available</p>
+            <p className="text-flux-text-secondary text-sm">Upload some videos to get started!</p>
           </div>
         </div>
       ) : (
@@ -178,7 +178,7 @@ export const HomeFeed: React.FC = () => {
 
       {/* Loading indicator for infinite scroll */}
       {!isLoading && videoFeed.length > 0 && (
-        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-white/50 text-sm">
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-flux-text-secondary text-sm bg-flux-bg-tertiary/50 backdrop-blur-sm px-3 py-1 rounded-full border border-flux-border-accent/30">
           {currentVideoIndex + 1} / {videoFeed.length}
         </div>
       )}

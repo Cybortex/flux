@@ -81,10 +81,10 @@ export const TabletNavigation: React.FC = () => {
   return (
     <>
       {/* Tablet Header Navigation */}
-      <div className="hidden md:flex lg:hidden fixed top-0 left-0 right-0 h-16 bg-flux-bg-secondary border-b border-flux-bg-tertiary z-50">
+      <div className="hidden md:flex lg:hidden fixed top-0 left-0 right-0 h-16 bg-flux-bg-card/95 backdrop-blur-lg border-b border-flux-border-accent/30 z-50 shadow-lg">
         <div className="flex items-center justify-between w-full px-6">
           {/* Logo */}
-          <div className="text-xl font-bold bg-flux-gradient bg-clip-text text-transparent">
+          <div className="text-xl font-bold bg-flux-gradient bg-clip-text text-transparent glow-cyan">
             FLUX
           </div>
 
@@ -95,10 +95,10 @@ export const TabletNavigation: React.FC = () => {
                 key={item.id}
                 onClick={() => handleNavClick(item)}
                 className={cn(
-                  "flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors text-sm font-medium",
+                  "flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 text-sm font-medium relative",
                   isActiveRoute(item.path)
-                    ? "bg-flux-primary text-white"
-                    : "text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary"
+                    ? "bg-flux-gradient text-white glow-cyan shadow-lg"
+                    : "text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary/50 border border-transparent hover:border-flux-border-accent/30"
                 )}
               >
                 <item.icon className="w-4 h-4" />
@@ -159,7 +159,7 @@ export const TabletNavigation: React.FC = () => {
             initial={{ translateX: '100%' }}
             animate={{ translateX: 0 }}
             exit={{ translateX: '100%' }}
-            className="absolute right-0 top-0 bottom-0 w-80 bg-flux-bg-secondary border-l border-flux-bg-tertiary overflow-y-auto"
+            className="absolute right-0 top-0 bottom-0 w-80 bg-flux-bg-card/95 backdrop-blur-lg border-l border-flux-border-accent/30 overflow-y-auto shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="p-6">
@@ -186,10 +186,10 @@ export const TabletNavigation: React.FC = () => {
                       key={item.id}
                       onClick={() => handleNavClick(item)}
                       className={cn(
-                        "w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-colors text-left",
+                        "w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-all duration-300 text-left relative overflow-hidden",
                         isActiveRoute(item.path)
-                          ? "bg-flux-primary text-white"
-                          : "text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary"
+                          ? "bg-flux-gradient text-white glow-cyan shadow-lg"
+                          : "text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary/50 border border-transparent hover:border-flux-border-accent/30"
                       )}
                     >
                       <item.icon className="w-5 h-5" />

@@ -95,16 +95,17 @@ export const DesktopSidebar: React.FC = () => {
       <motion.div
         initial={{ width: 280 }}
         animate={{ width: desktopSidebarCollapsed ? 80 : 280 }}
-        className="hidden lg:flex flex-col h-screen bg-flux-bg-secondary border-r border-flux-bg-tertiary fixed left-0 top-0 z-40"
+        className="hidden lg:flex flex-col h-screen bg-flux-bg-card/95 backdrop-blur-md border-r border-flux-border-accent/30 fixed left-0 top-0 z-40 shadow-2xl"
       >
         {/* Header */}
-        <div className="p-6 border-b border-flux-bg-tertiary">
-          <div className="flex items-center justify-between">
+        <div className="p-6 border-b border-flux-border-accent/30 relative overflow-hidden">
+          <div className="absolute inset-0 bg-flux-gradient opacity-10"></div>
+          <div className="relative flex items-center justify-between">
             {!desktopSidebarCollapsed && (
               <motion.div
                 initial={{ opacity: 1 }}
                 animate={{ opacity: desktopSidebarCollapsed ? 0 : 1 }}
-                className="text-2xl font-bold bg-flux-gradient bg-clip-text text-transparent"
+                className="text-2xl font-bold bg-flux-gradient bg-clip-text text-transparent glow-cyan"
               >
                 FLUX
               </motion.div>
@@ -113,7 +114,7 @@ export const DesktopSidebar: React.FC = () => {
               variant="ghost"
               size="sm"
               onClick={() => setDesktopSidebarCollapsed(!desktopSidebarCollapsed)}
-              className="text-flux-text-secondary hover:text-flux-text-primary"
+              className="text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary/50 border border-flux-border-primary/30"
             >
               {desktopSidebarCollapsed ? (
                 <ChevronRight className="w-4 h-4" />
@@ -191,10 +192,10 @@ export const DesktopSidebar: React.FC = () => {
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleNavClick(item)}
                   className={cn(
-                    "w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-colors text-left",
+                    "w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-all duration-300 text-left relative overflow-hidden",
                     isActiveRoute(item.path)
-                      ? "bg-flux-primary text-white"
-                      : "text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary"
+                      ? "bg-flux-gradient text-white glow-cyan shadow-lg"
+                      : "text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary/50 border border-transparent hover:border-flux-border-accent/30"
                   )}
                 >
                   <item.icon className="w-5 h-5 flex-shrink-0" />
@@ -232,10 +233,10 @@ export const DesktopSidebar: React.FC = () => {
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleNavClick(item)}
                   className={cn(
-                    "w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-colors text-left",
+                    "w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-all duration-300 text-left relative overflow-hidden",
                     isActiveRoute(item.path)
-                      ? "bg-flux-primary text-white"
-                      : "text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary"
+                      ? "bg-flux-gradient text-white glow-cyan shadow-lg"
+                      : "text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary/50 border border-transparent hover:border-flux-border-accent/30"
                   )}
                 >
                   <item.icon className="w-5 h-5 flex-shrink-0" />
@@ -274,10 +275,10 @@ export const DesktopSidebar: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleNavClick(item)}
                 className={cn(
-                  "w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-colors text-left",
+                  "w-full flex items-center space-x-3 px-3 py-3 rounded-lg transition-all duration-300 text-left relative overflow-hidden",
                   isActiveRoute(item.path)
-                    ? "bg-flux-primary text-white"
-                    : "text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary"
+                    ? "bg-flux-gradient text-white glow-cyan shadow-lg"
+                    : "text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary/50 border border-transparent hover:border-flux-border-accent/30"
                 )}
               >
                 <item.icon className="w-5 h-5 flex-shrink-0" />
@@ -303,43 +304,46 @@ export const DesktopSidebar: React.FC = () => {
           <div className="space-y-2">
             {/* Wallet Balance Display */}
             {!desktopSidebarCollapsed && isConnected && balance && (
-              <div className="bg-flux-bg-tertiary rounded-lg p-3 mb-2">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-medium text-flux-text-secondary">Balance</span>
-                  <div className="flex items-center space-x-1">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <Wallet className="w-3 h-3 text-flux-text-secondary" />
+              <div className="bg-flux-bg-tertiary/50 backdrop-blur-sm rounded-lg p-3 mb-2 border border-flux-border-accent/30 relative overflow-hidden">
+                <div className="absolute inset-0 bg-flux-gradient opacity-5"></div>
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-medium text-flux-text-secondary">Balance</span>
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-flux-accent-green rounded-full animate-pulse"></div>
+                      <Wallet className="w-3 h-3 text-flux-text-secondary" />
+                    </div>
                   </div>
-                </div>
-                <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="flex items-center space-x-1">
-                    <DollarSign className="w-3 h-3 text-flux-accent-gold" />
-                    <span className="text-flux-text-primary font-medium">
-                      {balance.appCoinBalance || 0}
-                    </span>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className="flex items-center space-x-1">
+                      <DollarSign className="w-3 h-3 text-flux-accent-gold glow" />
+                      <span className="text-flux-text-primary font-medium">
+                        {balance.appCoinBalance || 0}
+                      </span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Zap className="w-3 h-3 text-flux-primary glow-cyan" />
+                      <span className="text-flux-text-primary font-medium">
+                        {balance.bitsBalance || 0}
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-1">
-                    <Zap className="w-3 h-3 text-flux-primary" />
-                    <span className="text-flux-text-primary font-medium">
-                      {balance.bitsBalance || 0}
-                    </span>
+                  <div className="mt-2 pt-2 border-t border-flux-border-accent/30">
+                    <p className="text-xs text-flux-text-secondary font-mono">
+                      {formatWalletAddress(walletAddress ?? undefined)}
+                    </p>
                   </div>
-                </div>
-                <div className="mt-2 pt-2 border-t border-flux-bg-secondary">
-                  <p className="text-xs text-flux-text-secondary">
-                    {formatWalletAddress(walletAddress ?? undefined)}
-                  </p>
                 </div>
               </div>
             )}
 
             {/* Wallet Connection Status for Collapsed Sidebar */}
             {!desktopSidebarCollapsed && !isConnected && (
-              <div className="bg-flux-bg-tertiary rounded-lg p-3 mb-2">
+              <div className="bg-flux-bg-tertiary/50 backdrop-blur-sm rounded-lg p-3 mb-2 border border-flux-border-accent/30">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-medium text-flux-text-secondary">Wallet</span>
                   <div className="flex items-center space-x-1">
-                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-flux-accent-red rounded-full"></div>
                     <Wallet className="w-3 h-3 text-flux-text-secondary" />
                   </div>
                 </div>
@@ -349,7 +353,7 @@ export const DesktopSidebar: React.FC = () => {
 
             <Button
               variant="secondary"
-              className="w-full justify-start"
+              className="w-full justify-start bg-flux-bg-tertiary/50 hover:bg-flux-bg-tertiary border border-flux-border-primary/30 hover:border-flux-border-accent/50 transition-all duration-300"
               onClick={() => navigate('/wallet')}
             >
               <Wallet className="w-4 h-4 mr-2" />
@@ -358,7 +362,7 @@ export const DesktopSidebar: React.FC = () => {
             
             <Button
               variant="ghost"
-              className="w-full justify-start text-flux-accent-red hover:text-flux-accent-red hover:bg-flux-accent-red/10"
+              className="w-full justify-start text-flux-accent-red hover:text-flux-accent-red hover:bg-flux-accent-red/10 border border-transparent hover:border-flux-accent-red/30 transition-all duration-300"
               onClick={handleLogout}
             >
               <LogOut className="w-4 h-4 mr-2" />

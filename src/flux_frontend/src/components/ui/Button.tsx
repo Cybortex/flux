@@ -18,13 +18,13 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
+  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 relative overflow-hidden';
   
   const variants = {
-    primary: 'bg-flux-primary hover:bg-flux-primary-dark text-white focus:ring-flux-primary',
-    secondary: 'bg-flux-bg-tertiary hover:bg-flux-bg-secondary text-flux-text-primary border border-flux-bg-tertiary',
-    ghost: 'hover:bg-flux-bg-tertiary text-flux-text-secondary hover:text-flux-text-primary',
-    danger: 'bg-flux-accent-red hover:bg-red-600 text-white focus:ring-flux-accent-red',
+    primary: 'btn-futuristic focus:ring-flux-primary',
+    secondary: 'bg-flux-bg-tertiary/50 backdrop-blur-sm hover:bg-flux-bg-tertiary text-flux-text-primary border border-flux-border-primary/30 hover:border-flux-border-accent/50 transition-all duration-300',
+    ghost: 'hover:bg-flux-bg-tertiary/50 text-flux-text-secondary hover:text-flux-text-primary border border-transparent hover:border-flux-border-accent/30 transition-all duration-300',
+    danger: 'bg-flux-accent-red hover:bg-red-600 text-white focus:ring-flux-accent-red glow-red',
   };
   
   const sizes = {

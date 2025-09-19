@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#0f0f0f" />
-    <meta name="description" content="FLUX - Where content creators and streamers connect" />
-    <title>FLUX - Social Media Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="description" content="FLUX - Futuristic Social Media Platform" />
+    <title>FLUX - Futuristic Social Media Platform</title>
     <style>
       /* Prevent overscroll and maintain app-like feel */
       body {
@@ -22,7 +22,7 @@
       .loading-screen {
         position: fixed;
         inset: 0;
-        background: #0f0f0f;
+        background: #0a0a0a;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -32,16 +32,17 @@
       .loading-logo {
         font-size: 2rem;
         font-weight: bold;
-        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        background: linear-gradient(135deg, #00d4ff 0%, #9333ea 50%, #ff0080 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        animation: pulse 2s ease-in-out infinite;
+        animation: glow 2s ease-in-out infinite alternate;
+        text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
       }
       
-      @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
+      @keyframes glow {
+        0% { text-shadow: 0 0 5px rgba(0, 212, 255, 0.5); }
+        100% { text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 30px rgba(0, 212, 255, 0.4); }
       }
     </style>
   </head>

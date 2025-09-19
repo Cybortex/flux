@@ -157,11 +157,11 @@ export const DiscoverScreen: React.FC = () => {
   ] as const;
 
   return (
-    <div className="min-h-screen bg-flux-bg-primary pb-20">
+    <div className="min-h-screen animated-bg pb-20">
       {/* Header */}
-      <div className="sticky top-0 bg-flux-bg-primary/95 backdrop-blur-lg border-b border-flux-bg-tertiary z-10">
+      <div className="sticky top-0 bg-flux-bg-card/95 backdrop-blur-lg border-b border-flux-border-accent/30 z-10 shadow-lg">
         <div className="p-4 pt-12">
-          <h1 className="text-2xl font-bold text-flux-text-primary mb-4">Discover</h1>
+          <h1 className="text-2xl font-bold bg-flux-gradient bg-clip-text text-transparent mb-4 glow-cyan">Discover</h1>
           
           {/* Search Bar */}
           <div className="relative mb-4">
@@ -171,20 +171,20 @@ export const DiscoverScreen: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search videos, creators, hashtags..."
-              className="w-full pl-10 pr-4 py-3 bg-flux-bg-secondary text-flux-text-primary rounded-xl focus:outline-none focus:ring-2 focus:ring-flux-primary"
+              className="input-futuristic w-full pl-10 pr-4 py-3"
             />
           </div>
 
           {/* Tabs */}
-          <div className="flex space-x-1 bg-flux-bg-secondary rounded-lg p-1">
+          <div className="flex space-x-1 bg-flux-bg-tertiary/50 backdrop-blur-sm rounded-lg p-1 border border-flux-border-accent/20">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 flex items-center justify-center space-x-2 py-2 px-3 rounded-md transition-colors ${
+                className={`flex-1 flex items-center justify-center space-x-2 py-2 px-3 rounded-md transition-all duration-300 relative overflow-hidden ${
                   activeTab === tab.id
-                    ? 'bg-flux-primary text-white'
-                    : 'text-flux-text-secondary hover:text-flux-text-primary'
+                    ? 'bg-flux-gradient text-white glow-cyan shadow-lg'
+                    : 'text-flux-text-secondary hover:text-flux-text-primary hover:bg-flux-bg-tertiary/50 border border-transparent hover:border-flux-border-accent/30'
                 }`}
               >
                 <tab.icon className="w-4 h-4" />

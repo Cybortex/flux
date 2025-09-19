@@ -27,21 +27,21 @@ export const Avatar: React.FC<AvatarProps> = ({
   };
 
   const tierColors = {
-    bronze: 'ring-amber-600',
-    silver: 'ring-gray-400',
-    gold: 'ring-yellow-400',
-    platinum: 'ring-purple-400',
+    bronze: 'ring-flux-accent-gold glow',
+    silver: 'ring-flux-text-secondary',
+    gold: 'ring-flux-accent-gold glow',
+    platinum: 'ring-flux-accent-purple glow-purple',
   };
 
   return (
     <div className={cn('relative', className)}>
       <div
         className={cn(
-          'rounded-full overflow-hidden bg-flux-bg-tertiary',
+          'rounded-full overflow-hidden bg-flux-bg-tertiary border border-flux-border-accent/30',
           sizes[size],
           tier && 'ring-2',
           tier && tierColors[tier],
-          isLive && 'ring-2 ring-flux-accent-red'
+          isLive && 'ring-2 ring-flux-accent-red glow-red'
         )}
       >
         {src ? (
@@ -51,14 +51,14 @@ export const Avatar: React.FC<AvatarProps> = ({
             className="w-full h-full object-cover"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-flux-gradient text-white font-semibold">
+          <div className="w-full h-full flex items-center justify-center bg-flux-gradient text-white font-semibold glow-cyan">
             {alt.charAt(0).toUpperCase()}
           </div>
         )}
       </div>
       
       {isLive && (
-        <div className="absolute -bottom-1 -right-1 bg-flux-accent-red text-white text-xs px-1.5 py-0.5 rounded-full font-bold">
+        <div className="absolute -bottom-1 -right-1 bg-flux-accent-red text-white text-xs px-1.5 py-0.5 rounded-full font-bold glow-red animate-pulse">
           LIVE
         </div>
       )}
